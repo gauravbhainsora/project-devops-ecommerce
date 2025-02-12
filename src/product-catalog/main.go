@@ -286,6 +286,7 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 func (p *productCatalog) SearchProducts(ctx context.Context, req *pb.SearchProductsRequest) (*pb.SearchProductsResponse, error) {
 	span := trace.SpanFromContext(ctx)
 
+	
 	var result []*pb.Product
 	for _, product := range catalog {
 		if strings.Contains(strings.ToLower(product.Name), strings.ToLower(req.Query)) ||
