@@ -281,9 +281,12 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 	return found, nil
 }
 
+
+
 func (p *productCatalog) SearchProducts(ctx context.Context, req *pb.SearchProductsRequest) (*pb.SearchProductsResponse, error) {
 	span := trace.SpanFromContext(ctx)
 
+	
 	var result []*pb.Product
 	for _, product := range catalog {
 		if strings.Contains(strings.ToLower(product.Name), strings.ToLower(req.Query)) ||
@@ -315,6 +318,8 @@ func createClient(ctx context.Context, svcAddr string) (*grpc.ClientConn, error)
 		grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
 	)
 }
+
+
 
 
 
